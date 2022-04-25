@@ -1,4 +1,51 @@
 var currentScene = 0;
+var i = 0;
+var snake = function (x, y, h, w) {//How do I make it so that this isn't hard codded numbers?
+    fill(92, 196, 97);
+    rect(100,100,20,20);
+    rect(120,100,20,20);
+    rect(140,100,20,20);
+    rect(160,100,20,20);
+    rect(180,100,20,20);
+};
+//movement is onkeydown: left = 37, up = 38, right = 39, down = 40
+
+// needs to be in the draw function
+// need a geometry test to see if the snake touched the icon and add a point
+//make sure to write methods for movement like: 
+snake.prototype.up = function() {
+    this.y -= 5;
+}; //up method
+
+snake.prototype.down = function() {
+    this.y += 5;
+}; //down method
+
+snake.prototype.right = function() {
+    this.x -= 5;
+}; //right method
+
+snake.prototype.left = function() {
+    this.x += 5;
+}; //left method
+
+    if (keyIsPressed && keyCode === 37) 
+    {
+        snake.left();
+    } 
+    else if (keyIsPressed && keyCode === 38)
+    {
+        snake.up();
+    }
+    else if (keyIsPressed && keyCode === 39)
+    {
+        snake.right();
+    } 
+    else if (keyIsPressed && keyCode === 40)
+    {
+        snake.down();
+    }
+   // snake.draw();
 
 var drawHead1 = function(x, y, bitmojiSize) //Create head
     {
@@ -136,9 +183,18 @@ Button.prototype.handleMouseClick = function() {
 var startButton = new Button({
     x: 200,
     y: 300,
-    label: "Play Game",
+    label: "Instructions",
     onClick: function() {
         currentScene = 1;
+    }
+});
+
+var gameButton = new Button({
+    x: 200,
+    y: 300,
+    label: "Game",
+    onClick: function() {
+        currentScene = 2;
     }
 });
 
@@ -146,27 +202,39 @@ var splash = function ()
 {
     background(79, 199, 66);
     fill(36, 30, 30);
-    textSize(15);
-    text("", 31, 44);// \n is how you make a new line of text
+    textSize(38);
+    text("Snake Game", 131, 213, 300, 200);// \n is how you make a new line of text
     DrawBitmoji1();
     drawBitmoji2(100,100,100);
     startButton.draw();
 };
 
+var directions = function ()
+{
+  background(79, 199, 66);
+    fill(36, 30, 30);
+    textSize(38);
+    text("use the", 131, 213, 300, 200);  
+    gameButton.draw();
+};
 mouseClicked = function() {
     if (currentScene === 0)
         {startButton.handleMouseClick();}
+    else if (currentScene === 1)
+        {gameButton.handleMouseClick();}
+
 };
 
 var game = function() {
     background(28, 27, 28);
+    snake();
 };
 
 draw = function() {
     if (currentScene === 0)
     {splash();}
-    else
-    {
-    game();
-    }
+    if (currentScene === 1)
+    {directions();}
+    if (currentScene === 2)
+    {game();}
 };
