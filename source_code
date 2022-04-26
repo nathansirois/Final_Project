@@ -1,51 +1,63 @@
 var currentScene = 0;
+
 var i = 0;
-var snake = function (x, y, h, w) {//How do I make it so that this isn't hard codded numbers?
+
+var blobH = 20;
+
+var blobW = 20;
+
+var block1x = 100;// snake x blocks
+
+var block1y = 100;// snake y blocks
+
+var blobSpeed = 5;
+
+var blob = function (x, y, h, w) {//How do I make it so that this isn't hard codded numbers
+
+blob.prototype.up = function() {
+    block1y -= blobSpeed;
+}; //up method
+
+blob.prototype.down = function() {
+    block1y += blobSpeed;
+}; //down method
+
+blob.prototype.right = function() {
+    block1x += blobSpeed;
+}; //right method
+
+blob.prototype.left = function() {
+    block1x -= blobSpeed;
+}; //left method
+
+    if (keyIsPressed && keyCode === 37) 
+    {
+        blob.prototype.left();
+    } 
+    else if (keyIsPressed && keyCode === 38)
+    {
+        blob.prototype.up();
+    }
+    else if (keyIsPressed && keyCode === 39)
+    {
+        blob.prototype.right();
+    } 
+    else if (keyIsPressed && keyCode === 40)
+    {
+        blob.prototype.down();
+    }
+    background(0, 255, 47);
     fill(92, 196, 97);
-    rect(100,100,20,20);
-    rect(120,100,20,20);
-    rect(140,100,20,20);
-    rect(160,100,20,20);
-    rect(180,100,20,20);
+    rect(block1x,block1y,blobW,blobH);
+    
+    if blob x > 400 {}
 };
 //movement is onkeydown: left = 37, up = 38, right = 39, down = 40
 
 // needs to be in the draw function
 // need a geometry test to see if the snake touched the icon and add a point
 //make sure to write methods for movement like: 
-snake.prototype.up = function() {
-    this.y -= 5;
-}; //up method
 
-snake.prototype.down = function() {
-    this.y += 5;
-}; //down method
-
-snake.prototype.right = function() {
-    this.x -= 5;
-}; //right method
-
-snake.prototype.left = function() {
-    this.x += 5;
-}; //left method
-
-    if (keyIsPressed && keyCode === 37) 
-    {
-        snake.left();
-    } 
-    else if (keyIsPressed && keyCode === 38)
-    {
-        snake.up();
-    }
-    else if (keyIsPressed && keyCode === 39)
-    {
-        snake.right();
-    } 
-    else if (keyIsPressed && keyCode === 40)
-    {
-        snake.down();
-    }
-   // snake.draw();
 
 var drawHead1 = function(x, y, bitmojiSize) //Create head
     {
@@ -226,8 +238,8 @@ mouseClicked = function() {
 };
 
 var game = function() {
-    background(28, 27, 28);
-    snake();
+    background(23, 181, 23);
+    blob();
 };
 
 draw = function() {
