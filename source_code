@@ -1,5 +1,7 @@
 var currentScene = 0;
 
+var score = 0;
+
 var i = 0;
 
 var blobH = 20;
@@ -50,7 +52,7 @@ blob.prototype.left = function() {
     fill(92, 196, 97);
     rect(block1x,block1y,blobW,blobH);
     
-    if blob x > 400 {}
+    //if blob x > 400 {}
 };
 //movement is onkeydown: left = 37, up = 38, right = 39, down = 40
 
@@ -102,7 +104,7 @@ var bitmoji1 = function(x, y, bitmojiSize) //Draws entire bitmoji
   drawHead1(x,y,bitmojiSize);
   drawShirt1(x,y,bitmojiSize);
 };
-var DrawBitmoji1 = function (x, y, h)
+var drawBitmoji1 = function (x, y, h)
 {
     bitmoji1(249, 94, 65);
 };
@@ -161,6 +163,32 @@ var drawBitmoji2 = function (bitmojiX, bitmojiY, bitmojiHeight)
     drawBitmojiBody2(bitmojiX, bitmojiY, bitmojiHeight);
 };
 
+// psuedo code to insert random bitmojis please help its bad
+// //
+// var Bitmoji = function(x, y) {
+//     this.x = x;
+//     this.y = y;
+// };  bitmoji constructer
+//
+//  Blob.prototype.checkBitmojiGrab = function(mybitmoji) {
+//      if ((mybitmoji.x >= this.x - 40 && mybitmoji.x <= (this.x + 40)) &&
+//          (mybitmoji.y >= this.y && mybitmoji.y <= (this.y + 40))) {
+//         mybitmoji = -400;
+//         score +=10;
+//        
+// mybitmoji.prototype.draw = function() {
+//     fill(89, 71, 0);
+//    (Bitmoji, this.x, this.y, 70, 70);
+// };// bitmoji draw method
+//
+// var bitmoji = [];
+//
+// var myBitmoji = new Bitmoji(200, 300);
+//
+// for (var i = 0; i < 120; i++) {  
+//     bitmoji.push(new Bitmoji(i * -150, random(10, 400)));
+// }// adds new bitmoji onto the screen
+
 var Button = function(config) {
     this.x = config.x || 0;
     this.y = config.y || 0;
@@ -216,7 +244,7 @@ var splash = function ()
     fill(36, 30, 30);
     textSize(38);
     text("Snake Game", 131, 213, 300, 200);// \n is how you make a new line of text
-    DrawBitmoji1();
+    drawBitmoji1();
     drawBitmoji2(100,100,100);
     startButton.draw();
 };
