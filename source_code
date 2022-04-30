@@ -1,5 +1,64 @@
 var currentScene = 0;
 
+var i = 0;
+
+var blobH = 20;
+
+var blobW = 20;
+
+var block1x = 100;// snake x blocks
+
+var block1y = 100;// snake y blocks
+
+var blobSpeed = 5;
+
+var blob = function (x, y, h, w) {//How do I make it so that this isn't hard codded numbers
+
+blob.prototype.up = function() {
+    block1y -= blobSpeed;
+}; //up method
+
+blob.prototype.down = function() {
+    block1y += blobSpeed;
+}; //down method
+
+blob.prototype.right = function() {
+    block1x += blobSpeed;
+}; //right method
+
+blob.prototype.left = function() {
+    block1x -= blobSpeed;
+}; //left method
+
+    if (keyIsPressed && keyCode === 37) 
+    {
+        blob.prototype.left();
+    } 
+    else if (keyIsPressed && keyCode === 38)
+    {
+        blob.prototype.up();
+    }
+    else if (keyIsPressed && keyCode === 39)
+    {
+        blob.prototype.right();
+    } 
+    else if (keyIsPressed && keyCode === 40)
+    {
+        blob.prototype.down();
+    }
+    background(0, 255, 47);
+    fill(92, 196, 97);
+    rect(block1x,block1y,blobW,blobH);
+    
+    if blob x > 400 {}
+};
+//movement is onkeydown: left = 37, up = 38, right = 39, down = 40
+
+// needs to be in the draw function
+// need a geometry test to see if the snake touched the icon and add a point
+//make sure to write methods for movement like: 
+
+
 var drawHead1 = function(x, y, bitmojiSize) //Create head
     {
 noStroke();
@@ -136,9 +195,18 @@ Button.prototype.handleMouseClick = function() {
 var startButton = new Button({
     x: 200,
     y: 300,
-    label: "Play Game",
+    label: "Instructions",
     onClick: function() {
         currentScene = 1;
+    }
+});
+
+var gameButton = new Button({
+    x: 200,
+    y: 300,
+    label: "Game",
+    onClick: function() {
+        currentScene = 2;
     }
 });
 
@@ -146,27 +214,39 @@ var splash = function ()
 {
     background(79, 199, 66);
     fill(36, 30, 30);
-    textSize(15);
-    text("", 31, 44);// \n is how you make a new line of text
+    textSize(38);
+    text("Snake Game", 131, 213, 300, 200);// \n is how you make a new line of text
     DrawBitmoji1();
     drawBitmoji2(100,100,100);
     startButton.draw();
 };
 
+var directions = function ()
+{
+  background(79, 199, 66);
+    fill(36, 30, 30);
+    textSize(38);
+    text("use the", 131, 213, 300, 200);  
+    gameButton.draw();
+};
 mouseClicked = function() {
     if (currentScene === 0)
         {startButton.handleMouseClick();}
+    else if (currentScene === 1)
+        {gameButton.handleMouseClick();}
+
 };
 
 var game = function() {
-    background(28, 27, 28);
+    background(23, 181, 23);
+    blob();
 };
 
 draw = function() {
     if (currentScene === 0)
     {splash();}
-    else
-    {
-    game();
-    }
+    if (currentScene === 1)
+    {directions();}
+    if (currentScene === 2)
+    {game();}
 };
