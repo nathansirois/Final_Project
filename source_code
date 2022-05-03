@@ -12,7 +12,11 @@ var block1x = 100;// snake x blocks
 
 var block1y = 100;// snake y blocks
 
-var blobSpeed = 5;
+var blobSpeed = 1;
+
+var bitmojiX =30;
+
+var bitmojiY =50;
 
 var blob = function (x, y, h, w) {//How do I make it so that this isn't hard codded numbers
 
@@ -106,7 +110,7 @@ var bitmoji1 = function(x, y, bitmojiSize) //Draws entire bitmoji
 };
 var drawBitmoji1 = function (x, y, h)
 {
-    bitmoji1(249, 94, 65);
+    bitmoji1(bitmojiX, bitmojiY, 40);
 };
 
 var drawBitmojiHead2 = function (bitmojiX, bitmojiY, bitmojiHeight)
@@ -164,30 +168,19 @@ var drawBitmoji2 = function (bitmojiX, bitmojiY, bitmojiHeight)
 };
 
 // psuedo code to insert random bitmojis please help its bad
-// //
-// var Bitmoji = function(x, y) {
-//     this.x = x;
-//     this.y = y;
-// };  bitmoji constructer
-//
-//  Blob.prototype.checkBitmojiGrab = function(mybitmoji) {
-//      if ((mybitmoji.x >= this.x - 40 && mybitmoji.x <= (this.x + 40)) &&
-//          (mybitmoji.y >= this.y && mybitmoji.y <= (this.y + 40))) {
-//         mybitmoji = -400;
-//         score +=10;
-//        
-// mybitmoji.prototype.draw = function() {
-//     fill(89, 71, 0);
-//    (Bitmoji, this.x, this.y, 70, 70);
-// };// bitmoji draw method
-//
-// var bitmoji = [];
-//
-// var myBitmoji = new Bitmoji(200, 300);
-//
-// for (var i = 0; i < 120; i++) {  
-//     bitmoji.push(new Bitmoji(i * -150, random(10, 400)));
-// }// adds new bitmoji onto the screen
+ var BitmojiGrab = function() {
+     if ((block1x >= bitmojiX - 40 && block1x <= (bitmojiX + 40)) &&
+         (block1y >= bitmojiY - 40 && block1y <= (bitmojiY + 40))) {
+        bitmojiX = round(random(50,350));
+        bitmojiY = round(random(50,350));
+        score +=10;
+        blobSpeed = blobSpeed + 1;
+        background(224, 172, 224);
+        
+        //if BitmojiGrab === true && drawBitmoji === drawBitmoji1 {drawBitmoji2} fix this to have the bitmojis switch
+       // if BitmojiGrab === true && drawBitmoji === drawBitmoji2 {drawBitmoji1}
+         }
+ };
 
 var Button = function(config) {
     this.x = config.x || 0;
@@ -268,6 +261,11 @@ mouseClicked = function() {
 var game = function() {
     background(23, 181, 23);
     blob();
+    drawBitmoji1(bitmojiX, bitmojiY);
+    BitmojiGrab();
+    fill(26, 40, 163);
+    textSize(30);
+    text("Score " + score, 19, 17);
 };
 
 draw = function() {
