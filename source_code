@@ -20,6 +20,13 @@ var bitmojiY =50;
 
 var blob = function (x, y, h, w) {//How do I make it so that this isn't hard codded numbers
 
+// //blob.prototype.isOutOfBounds = function() {
+//     if (block1x < 0 || block1x > 400 || block1y < 0 || block1y > 400) {
+//         return true;
+//     }
+//     return false;
+// }; //Game end method
+
 blob.prototype.up = function() {
     block1y -= blobSpeed;
 }; //up method
@@ -36,10 +43,10 @@ blob.prototype.left = function() {
     block1x -= blobSpeed;
 }; //left method
 
-    if (keyIsPressed && keyCode === 37) 
+    if (keyIsPressed && keyCode === 37)
     {
         blob.prototype.left();
-    } 
+    }
     else if (keyIsPressed && keyCode === 38)
     {
         blob.prototype.up();
@@ -47,7 +54,7 @@ blob.prototype.left = function() {
     else if (keyIsPressed && keyCode === 39)
     {
         blob.prototype.right();
-    } 
+    }
     else if (keyIsPressed && keyCode === 40)
     {
         blob.prototype.down();
@@ -55,14 +62,14 @@ blob.prototype.left = function() {
     background(0, 255, 47);
     fill(92, 196, 97);
     rect(block1x,block1y,blobW,blobH);
-    
+   
     //if blob x > 400 {}
 };
 //movement is onkeydown: left = 37, up = 38, right = 39, down = 40
 
 // needs to be in the draw function
 // need a geometry test to see if the snake touched the icon and add a point
-//make sure to write methods for movement like: 
+//make sure to write methods for movement like:
 
 
 var drawHead1 = function(x, y, bitmojiSize) //Create head
@@ -71,7 +78,7 @@ noStroke();
 fill(255, 224, 189); //fill for skin tone
 ellipse(x+(bitmojiSize/100),y+(bitmojiSize/100),bitmojiSize/100*83,bitmojiSize/100*100); //head
 fill(79, 199, 66); //fill for background
-arc(x-(bitmojiSize/100*42), y+(bitmojiSize/100*36), (bitmojiSize/100*28), 
+arc(x-(bitmojiSize/100*42), y+(bitmojiSize/100*36), (bitmojiSize/100*28),
 (bitmojiSize/100*55), 0, 361); //Left chisel
 arc(x+(bitmojiSize/100*42), y+(bitmojiSize/100*36), (bitmojiSize/100*28), (bitmojiSize/100*55), 0, 361); //Right chisel
 fill(59, 48, 36); //Brown Hair
@@ -118,36 +125,36 @@ var drawBitmojiHead2 = function (bitmojiX, bitmojiY, bitmojiHeight)
  noStroke();
 fill(255, 205, 148);
 ellipse(bitmojiX, bitmojiY, bitmojiHeight/150*83, bitmojiHeight/150*100); //head
-        
+       
 fill(0, 219, 153);
 quad(bitmojiX-(bitmojiHeight/150*44), bitmojiY-(bitmojiHeight/150*1), bitmojiX-(bitmojiHeight/150*17), bitmojiY+(bitmojiHeight/150*49), bitmojiX-(bitmojiHeight/150*17), bitmojiY     +(bitmojiHeight/150*65), bitmojiX-(bitmojiHeight/150*40), bitmojiY+(bitmojiHeight/150*17));//left cheek
-        
+       
 fill(0, 219, 153);
 quad(bitmojiX+(bitmojiHeight/150*52), bitmojiY+(bitmojiHeight/150*6), bitmojiX+(bitmojiHeight/150*25), bitmojiY+(bitmojiHeight/150*49), bitmojiX+(bitmojiHeight/150*12), bitmojiY+(bitmojiHeight/150*56), bitmojiX+(bitmojiHeight/150*42), bitmojiY+(bitmojiHeight/150*6));//right cheek
-    
+   
     fill(97, 52, 52);//hair color
     quad(bitmojiX-(bitmojiHeight/150*43), bitmojiY-(bitmojiHeight/150*5), bitmojiX-(bitmojiHeight/150*37), bitmojiY-(bitmojiHeight/150*32), bitmojiX-(bitmojiHeight/150*13), bitmojiY-(bitmojiHeight/150*50), bitmojiX-(bitmojiHeight/150*30), bitmojiY-(bitmojiHeight/150*4));//left hair
-    
+   
     quad(bitmojiX+(bitmojiHeight/150*49), bitmojiY-(bitmojiHeight/150*3), bitmojiX+(bitmojiHeight/150*34), bitmojiY-(bitmojiHeight/150*32), bitmojiX+(bitmojiHeight/150*13), bitmojiY-(bitmojiHeight/150*50), bitmojiX+(bitmojiHeight/150*34), bitmojiY-(bitmojiHeight/150*3));//right hair
-    
+   
     stroke(0, 0, 0);//left eye outline
     fill(255, 255, 255);//left eye white
     ellipse(bitmojiX-(bitmojiHeight/150*10), bitmojiY-(bitmojiHeight/150*6), bitmojiHeight/150*20, bitmojiHeight/150*15);//left outer eye
     ellipse(bitmojiX+(bitmojiHeight/150*17), bitmojiY-(bitmojiHeight/150*5), bitmojiHeight/150*20, bitmojiHeight/150*15);//right outer white
-    
+   
     fill(97, 52, 52);
     ellipse(bitmojiX-(bitmojiHeight/150*10), bitmojiY-(bitmojiHeight/150*6), bitmojiHeight/150*6, bitmojiHeight/150*4);//left eye pupil
-    
+   
     ellipse(bitmojiX+(bitmojiHeight/150*17), bitmojiY-(bitmojiHeight/150*5), bitmojiHeight/150*6, bitmojiHeight/150*4);//right eye pupil
-    
+   
     stroke(10, 9, 10);
     fill(255, 205, 148);//fill to skin color
     bezier(bitmojiX, bitmojiY, bitmojiX+(bitmojiHeight/150*21), bitmojiY+(bitmojiHeight/150*22), bitmojiX-(bitmojiHeight/150*8), bitmojiY+(bitmojiHeight/150*20), bitmojiX-(bitmojiHeight/150*4), bitmojiY+(bitmojiHeight/150*15));//nose
-    
+   
 fill(255, 255, 255);//teeth color
 arc(bitmojiX+(bitmojiHeight/150*3), bitmojiY+(bitmojiHeight/150*25), bitmojiHeight/150*30, bitmojiHeight/150*13, bitmojiHeight/150*1, 180);//mouth
 line(bitmojiX-(bitmojiHeight/150*14), bitmojiY+(bitmojiHeight/150*24), bitmojiX+(bitmojiHeight/150*19), bitmojiY+(bitmojiHeight/150*24));//top of mouth
-    
+   
 fill(117, 130, 117);
 arc(bitmojiX, bitmojiY-(bitmojiHeight/150*22), bitmojiHeight/150*85, bitmojiHeight/150*63, -180, bitmojiHeight/150*0);//hat
 line(bitmojiX+(bitmojiHeight/150*42), bitmojiY-(bitmojiHeight/150*22), bitmojiX-(bitmojiHeight/150*43), bitmojiY-(bitmojiHeight/150*21));
@@ -176,7 +183,7 @@ var drawBitmoji2 = function (bitmojiX, bitmojiY, bitmojiHeight)
         score +=10;
         blobSpeed = blobSpeed + 1;
         background(224, 172, 224);
-        
+       
         //if BitmojiGrab === true && drawBitmoji === drawBitmoji1 {drawBitmoji2} fix this to have the bitmojis switch
        // if BitmojiGrab === true && drawBitmoji === drawBitmoji2 {drawBitmoji1}
          }
@@ -237,7 +244,7 @@ var splash = function ()
     fill(36, 30, 30);
     textSize(38);
     text("Snake Game", 131, 213, 300, 200);// \n is how you make a new line of text
-    drawBitmoji1();
+    bitmoji1(226,100,59);
     drawBitmoji2(100,100,100);
     startButton.draw();
 };
@@ -261,11 +268,15 @@ mouseClicked = function() {
 var game = function() {
     background(23, 181, 23);
     blob();
-    drawBitmoji1(bitmojiX, bitmojiY);
+    drawBitmoji2(bitmojiX, bitmojiY);
+    var newScore = score / 10;
+    if (newScore % 2 === 0) {drawBitmoji1(bitmojiX, bitmojiY, 40);}
+    else {drawBitmoji2(bitmojiX, bitmojiY, 60);}
     BitmojiGrab();
     fill(26, 40, 163);
     textSize(30);
     text("Score " + score, 19, 17);
+    
 };
 
 draw = function() {
