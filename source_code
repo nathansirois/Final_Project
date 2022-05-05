@@ -18,14 +18,7 @@ var bitmojiX =30;
 
 var bitmojiY =50;
 
-var blob = function (x, y, h, w) {//How do I make it so that this isn't hard codded numbers
-
-// //blob.prototype.isOutOfBounds = function() {
-//     if (block1x < 0 || block1x > 400 || block1y < 0 || block1y > 400) {
-//         return true;
-//     }
-//     return false;
-// }; //Game end method
+var blob = function (x, y, h, w) {
 
 blob.prototype.up = function() {
     block1y -= blobSpeed;
@@ -126,10 +119,10 @@ var drawBitmojiHead2 = function (bitmojiX, bitmojiY, bitmojiHeight)
 fill(255, 205, 148);
 ellipse(bitmojiX, bitmojiY, bitmojiHeight/150*83, bitmojiHeight/150*100); //head
        
-fill(0, 219, 153);
+fill(92, 196, 97);
 quad(bitmojiX-(bitmojiHeight/150*44), bitmojiY-(bitmojiHeight/150*1), bitmojiX-(bitmojiHeight/150*17), bitmojiY+(bitmojiHeight/150*49), bitmojiX-(bitmojiHeight/150*17), bitmojiY     +(bitmojiHeight/150*65), bitmojiX-(bitmojiHeight/150*40), bitmojiY+(bitmojiHeight/150*17));//left cheek
        
-fill(0, 219, 153);
+fill(92, 196, 97);
 quad(bitmojiX+(bitmojiHeight/150*52), bitmojiY+(bitmojiHeight/150*6), bitmojiX+(bitmojiHeight/150*25), bitmojiY+(bitmojiHeight/150*49), bitmojiX+(bitmojiHeight/150*12), bitmojiY+(bitmojiHeight/150*56), bitmojiX+(bitmojiHeight/150*42), bitmojiY+(bitmojiHeight/150*6));//right cheek
    
     fill(97, 52, 52);//hair color
@@ -183,16 +176,13 @@ var drawBitmoji2 = function (bitmojiX, bitmojiY, bitmojiHeight)
         score +=10;
         blobSpeed = blobSpeed + 1;
         background(224, 172, 224);
-       
-        //if BitmojiGrab === true && drawBitmoji === drawBitmoji1 {drawBitmoji2} fix this to have the bitmojis switch
-       // if BitmojiGrab === true && drawBitmoji === drawBitmoji2 {drawBitmoji1}
          }
  };
 
 var Button = function(config) {
     this.x = config.x || 0;
     this.y = config.y || 0;
-    this.width = config.width || 150;
+    this.width = config.width || 119;
     this.height = config.height || 50;
     this.label = config.label || "Click";
     this.onClick = config.onClick || function() {};
@@ -221,8 +211,8 @@ Button.prototype.handleMouseClick = function() {
 };
 
 var startButton = new Button({
-    x: 200,
-    y: 300,
+    x: 127,
+    y: 309,
     label: "Instructions",
     onClick: function() {
         currentScene = 1;
@@ -230,9 +220,9 @@ var startButton = new Button({
 });
 
 var gameButton = new Button({
-    x: 200,
-    y: 300,
-    label: "Game",
+    x: 127,
+    y: 309,
+    label: "Start Game",
     onClick: function() {
         currentScene = 2;
     }
@@ -243,7 +233,9 @@ var splash = function ()
     background(79, 199, 66);
     fill(36, 30, 30);
     textSize(38);
-    text("Snake Game", 131, 213, 300, 200);// \n is how you make a new line of text
+    text("Snake Game", 82, 181, 300, 200);// \n is how you make a new line of text
+    textSize(18);
+    text("By: Nathan Sirois and Kyle Cabral", 56, 235, 300, 200);
     bitmoji1(226,100,59);
     drawBitmoji2(100,100,100);
     startButton.draw();
@@ -253,8 +245,10 @@ var directions = function ()
 {
   background(79, 199, 66);
     fill(36, 30, 30);
-    textSize(38);
-    text("use the", 131, 213, 300, 200);  
+    textSize(28);
+    text("Directions:", 49, 42, 300, 200);
+    textSize(18);
+    text("The objective of the game is to grab the bitmoji that appears on the screen by directing the block using the arrow keys. The speed of the block will increase each time a bitmoji is grabbed. Touching the borders of the game screen will end the game.", 44,100,300,200);
     gameButton.draw();
 };
 mouseClicked = function() {
@@ -275,8 +269,12 @@ var game = function() {
     BitmojiGrab();
     fill(26, 40, 163);
     textSize(30);
-    text("Score " + score, 19, 17);
-    
+    text("Score: " + score, 19, 17);
+     if (block1x < 0 || block1x > 400 || block1y < 0 || block1y > 400) {
+     blobSpeed = 0;
+     fill(105, 6, 36);
+     text("Game Over", 121, 155);// add score when that is finished
+     }
 };
 
 draw = function() {
