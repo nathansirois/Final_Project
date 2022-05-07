@@ -1,3 +1,6 @@
+////////////////////
+//Global variables
+////////////////////
 var currentScene = 0;
 
 var score = 0;
@@ -8,16 +11,19 @@ var blobH = 20;
 
 var blobW = 20;
 
-var block1x = 100;// snake x blocks
+var block1x = 100;
 
-var block1y = 100;// snake y blocks
+var block1y = 100;
 
 var blobSpeed = 1;
 
-var bitmojiX =30;
+var bitmojiX = 30;
 
-var bitmojiY =50;
-
+var bitmojiY = 50;
+////////////////////
+//Constructer for the blob as well as
+//the methods for its movement
+////////////////////
 var blob = function (x, y, h, w) {
 
 blob.prototype.up = function() {
@@ -35,10 +41,10 @@ blob.prototype.right = function() {
 blob.prototype.left = function() {
     block1x -= blobSpeed;
 }; //left method
-
+//the statements here assign the methods to                                              //the correct arrow key by its key code identifier
     if (keyIsPressed && keyCode === 37)
     {
-        blob.prototype.left();
+        blob.prototype.left(); 
     }
     else if (keyIsPressed && keyCode === 38)
     {
@@ -54,17 +60,11 @@ blob.prototype.left = function() {
     }
     background(0, 255, 47);
     fill(92, 196, 97);
-    rect(block1x,block1y,blobW,blobH);
-   
-    //if blob x > 400 {}
+    rect(block1x,block1y,blobW,blobH); //actual blob that you control
 };
-//movement is onkeydown: left = 37, up = 38, right = 39, down = 40
-
-// needs to be in the draw function
-// need a geometry test to see if the snake touched the icon and add a point
-//make sure to write methods for movement like:
-
-
+////////////////////
+//both bitmoji draw functions
+////////////////////
 var drawHead1 = function(x, y, bitmojiSize) //Create head
     {
 noStroke();
@@ -93,6 +93,7 @@ bezier(x+(bitmojiSize/100),y+(bitmojiSize/100),x+(bitmojiSize/100*21),y+(bitmoji
 fill(255, 255, 255); //fill for teeth
 arc(x+(bitmojiSize/100*3),y+(bitmojiSize/100*26),(bitmojiSize/100*30),(bitmojiSize/100*17),-18, 172); //mouth arc
 };
+
 var drawShirt1 = function(x, y, bitmojiSize) //Create shirt
     {
 noStroke();
@@ -103,18 +104,20 @@ fill(255, 255, 255); //Text color
 textSize((bitmojiSize/101*33)); //Initials
 text("NS", x-(bitmojiSize/100*21), y+(bitmojiSize/155*80)); //initial size
 };
+
 var bitmoji1 = function(x, y, bitmojiSize) //Draws entire bitmoji
     {
   drawHead1(x,y,bitmojiSize);
   drawShirt1(x,y,bitmojiSize);
 };
+
 var drawBitmoji1 = function (x, y, h)
-{
+    {
     bitmoji1(bitmojiX, bitmojiY, 40);
 };
 
 var drawBitmojiHead2 = function (bitmojiX, bitmojiY, bitmojiHeight)
-{
+    {
  noStroke();
 fill(255, 205, 148);
 ellipse(bitmojiX, bitmojiY, bitmojiHeight/150*83, bitmojiHeight/150*100); //head
@@ -154,7 +157,7 @@ line(bitmojiX+(bitmojiHeight/150*42), bitmojiY-(bitmojiHeight/150*22), bitmojiX-
 };
 
 var drawBitmojiBody2 = function (bitmojiX, bitmojiY, bitmojiHeight)
-{
+    {
    fill(0, 98, 255);//shirt color
 quad(bitmojiX+(bitmojiHeight/150*48), bitmojiY+(bitmojiHeight/150*50), bitmojiX-(bitmojiHeight/150*47), bitmojiY+(bitmojiHeight/150*48), bitmojiX-(bitmojiHeight/150*46), bitmojiY+(bitmojiHeight/150*75), bitmojiX+(bitmojiHeight/150*48), bitmojiY+(bitmojiHeight/150*74));//shirt
 
@@ -162,23 +165,26 @@ quad(bitmojiX+(bitmojiHeight/150*48), bitmojiY+(bitmojiHeight/150*50), bitmojiX-
 };
 
 var drawBitmoji2 = function (bitmojiX, bitmojiY, bitmojiHeight)
-{
+    {
     drawBitmojiHead2(bitmojiX, bitmojiY, bitmojiHeight);
     drawBitmojiBody2(bitmojiX, bitmojiY, bitmojiHeight);
 };
-
-// psuedo code to insert random bitmojis please help its bad
+////////////////////
+//game grab method
+////////////////////
  var BitmojiGrab = function() {
      if ((block1x >= bitmojiX - 40 && block1x <= (bitmojiX + 40)) &&
-         (block1y >= bitmojiY - 40 && block1y <= (bitmojiY + 40))) {
-        bitmojiX = round(random(50,350));
+         (block1y >= bitmojiY - 40 && block1y <= (bitmojiY + 40))) {//checks if the blob touched the bitmoji
+        bitmojiX = round(random(50,350));//assigns the new location for the new bitmoji 
         bitmojiY = round(random(50,350));
-        score +=10;
-        blobSpeed = blobSpeed + 1;
+        score +=10;//adds score
+        blobSpeed = blobSpeed + 1;//increases speed
         background(224, 172, 224);
          }
  };
-
+////////////////////
+//Khan button class
+////////////////////
 var Button = function(config) {
     this.x = config.x || 0;
     this.y = config.y || 0;
@@ -209,8 +215,10 @@ Button.prototype.handleMouseClick = function() {
         this.onClick();
     }
 };
-
-var startButton = new Button({
+////////////////////
+//our specific buttons
+////////////////////
+var startButton = new Button({//1st screen button
     x: 127,
     y: 309,
     label: "Instructions",
@@ -219,7 +227,7 @@ var startButton = new Button({
     }
 });
 
-var gameButton = new Button({
+var gameButton = new Button({//2nd screen button
     x: 127,
     y: 309,
     label: "Start Game",
@@ -227,7 +235,9 @@ var gameButton = new Button({
         currentScene = 2;
     }
 });
-
+////////////////////
+//different screens for our program
+////////////////////
 var splash = function ()
 {
     background(79, 199, 66);
@@ -251,12 +261,12 @@ var directions = function ()
     text("The objective of the game is to grab the bitmoji that appears on the screen by directing the block using the arrow keys. The speed of the block will increase each time a bitmoji is grabbed. Touching the borders of the game screen will end the game.", 44,100,300,200);
     gameButton.draw();
 };
+
 mouseClicked = function() {
     if (currentScene === 0)
         {startButton.handleMouseClick();}
     else if (currentScene === 1)
         {gameButton.handleMouseClick();}
-
 };
 
 var game = function() {
@@ -265,18 +275,20 @@ var game = function() {
     drawBitmoji2(bitmojiX, bitmojiY);
     var newScore = score / 10;
     if (newScore % 2 === 0) {drawBitmoji1(bitmojiX, bitmojiY, 40);}
-    else {drawBitmoji2(bitmojiX, bitmojiY, 60);}
+    else {drawBitmoji2(bitmojiX, bitmojiY, 60);}//switches between the two bitmojis
     BitmojiGrab();
     fill(26, 40, 163);
     textSize(30);
     text("Score: " + score, 19, 17);
-     if (block1x < 0 || block1x > 400 || block1y < 0 || block1y > 400) {
+     if (block1x < 0 || block1x > 400 || block1y < 0 || block1y > 400) {//collision check
      blobSpeed = 0;
      fill(105, 6, 36);
      text("Game Over", 121, 155);// add score when that is finished
      }
 };
-
+////////////////////
+//draw function
+////////////////////
 draw = function() {
     if (currentScene === 0)
     {splash();}
@@ -285,3 +297,4 @@ draw = function() {
     if (currentScene === 2)
     {game();}
 };
+////////////////////
