@@ -280,7 +280,7 @@ var game = function() {
     fill(26, 40, 163);
     textSize(30);
     text("Score: " + score, 19, 17);
-     if (block1x < 0 || block1x > 400 || block1y < 0 || block1y > 400) {//collision check
+     if (block1x < 0 || block1x > 380 || block1y < 0 || block1y > 380) {//collision check
      blobSpeed = 0;
      fill(105, 6, 36);
      text("Game Over", 121, 155);// add score when that is finished
