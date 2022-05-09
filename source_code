@@ -11,7 +11,7 @@ var blobH = 20;
 
 var blobW = 20;
 
-var block1x = 100;
+var block1x = 300;
 
 var block1y = 100;
 
